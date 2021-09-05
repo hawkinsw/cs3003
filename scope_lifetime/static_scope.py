@@ -18,3 +18,10 @@ def function_outer():
 
 if __name__=="__main__":
   function_outer()
+
+"""
+    Expected output:
+    $ python3 './static_scope.py'
+    outer_variable: outer variable
+    outer_variable: outer variable
+"""

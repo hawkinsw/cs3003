@@ -36,3 +36,10 @@ def function_outer():
 
 if __name__=="__main__":
   function_outer()
+
+"""
+    Expected output:
+    $ python3 ./dynamic_scope.py
+    outer_variable: outer variable
+    outer_variable: not the outer variable.
+"""
