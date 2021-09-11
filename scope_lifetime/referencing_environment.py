@@ -24,7 +24,14 @@ def outer_function(parameter_one = None, parameter_two = None):
       nonlocal outer_local1
       nonlocal outer_local2
 
-      nonlocal five
+      # Uncommenting this line will break the program? Why?
+      # Because only variables that are in lexical scope
+      # can be brought in to this scope using the nonlocal
+      # keyword. five is in the lexical scope of testing
+      # but not either inner_function nor outer_function.
+      # https://docs.python.org/3/reference/simple_stmts.html#the-nonlocal-statement
+      #nonlocal five
+
 
       if inner_local1 == None:
         pass
@@ -32,7 +39,13 @@ def outer_function(parameter_one = None, parameter_two = None):
         pass
       inner_inner_local1 = None
       inner_inner_local2 = None
+
+      # The show_referencing_environment function will print out 
+      # the referencing environment of the statement. In other 
+      # words, it will print out all the identifiers that can be
+      # used to access variables at this point in the program.
       show_referencing_environment()
+
     inner_inner_function()
 
   outer_local2 = None
