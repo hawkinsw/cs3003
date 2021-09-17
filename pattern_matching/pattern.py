@@ -27,7 +27,7 @@ def exec(operation):
     case Subtraction(left = left, right = right):
       return left - right
     case _: 
-      raise SyntaxError("exec cannot handle a {operation}")
+      raise SyntaxError(f"exec cannot handle a {operation}")
 
 if __name__=='__main__':
   add = Addition(5, 4)
