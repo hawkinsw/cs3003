@@ -1,0 +1,58 @@
+class Car {
+  protected boolean electric = false;
+  protected int wheels = 4;
+
+  Car() {
+  }
+
+  void start() {
+    System.out.println("Starting a car ...");
+    if (this.ignite()) {
+      System.out.println("Ignited the engine!");
+    } else {
+      System.out.println("Did NOT ignite the engine!");
+    }
+  }
+
+  boolean ignite() {
+      System.out.println("Igniting a generic car's engine!");
+      return true;
+  }
+}
+
+class Tesla extends Car {
+  Tesla() {
+    super();
+    electric = true;
+  }
+
+  @Override
+  boolean ignite() {
+    System.out.println("Igniting a Tesla's engine!");
+    return true;
+  }
+}
+
+class Chevrolet extends Car {
+  Chevrolet() {
+    super();
+  }
+
+  @Override
+  boolean ignite() {
+    System.out.println("Igniting a Chevrolet's engine!");
+    return false;
+  }
+}
+
+public class CarDemo {
+  public static void main(String args[]) {
+    Car c = new Car();
+    Car t = new Tesla();
+    Car v = new Chevrolet();
+
+    c.start();
+    t.start();
+    v.start();
+  }
+}
