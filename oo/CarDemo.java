@@ -28,6 +28,7 @@ class Tesla extends Car {
 
   @Override
   boolean ignite() {
+    super.ignite();
     System.out.println("Igniting a Tesla's engine!");
     return true;
   }
@@ -40,8 +41,17 @@ class Chevrolet extends Car {
 
   @Override
   boolean ignite() {
+    super.ignite();
     System.out.println("Igniting a Chevrolet's engine!");
     return false;
+  }
+}
+
+class Volt extends Chevrolet {
+  @Override
+  boolean ignite() {
+    System.out.println("Volt!");
+    return true;
   }
 }
 
@@ -50,9 +60,11 @@ public class CarDemo {
     Car c = new Car();
     Car t = new Tesla();
     Car v = new Chevrolet();
+    Car vv = new Volt();
 
-    c.start();
-    t.start();
-    v.start();
+    c.ignite();
+    t.ignite();
+    v.ignite();
+    vv.ignite();
   }
 }
