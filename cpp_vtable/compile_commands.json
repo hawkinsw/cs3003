@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/hawkinsw/code/uc/cs3003/cpp_vtable-build",
+  "command": "/usr/bin/c++    -g   -o CMakeFiles/cpp_vtable.dir/cpp_vtable.cpp.o -c /home/hawkinsw/code/uc/cs3003/cpp_vtable/cpp_vtable.cpp",
+  "file": "/home/hawkinsw/code/uc/cs3003/cpp_vtable/cpp_vtable.cpp"
+}
+]
