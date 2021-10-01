@@ -1,0 +1,7 @@
+[
+{
+  "directory": "/home/hawkinsw/code/uc/cs3003/use_after_free-build",
+  "command": "/usr/bin/c++    -g   -o CMakeFiles/use_after_free.dir/use_after_free.cpp.o -c /home/hawkinsw/code/uc/cs3003/use_after_free/use_after_free.cpp",
+  "file": "/home/hawkinsw/code/uc/cs3003/use_after_free/use_after_free.cpp"
+}
+]
