@@ -18,28 +18,38 @@ def dynamic(lexical_variable_value, variable_name):
             del containing_frame
     return value
 
-def function_outer():
-    outer_variable = "outer variable"
-    def function_very_inner():
-        value_of_outer_variable = dynamic(outer_variable, "outer_variable")
-        print(f"outer_variable: {value_of_outer_variable}")
+def function_a():
+    variable_v = "outer variable"
+    def function_b():
+        value_of_variable_v = dynamic(variable_v, "variable_v")
+        print(f"variable_v: {value_of_variable_v}")
 
-    def function_inner_first():
-      function_very_inner()
+    def function_c():
+      function_b()
 
-    def function_inner_second():
-      outer_variable = "not the outer variable."
-      function_very_inner()
+    def function_d():
+      variable_v = "not the outer variable."
+      function_b()
 
-    function_inner_first()
-    function_inner_second()
+    print("Calling function_c (BEGIN)")
+    function_c()
+    print("Calling function_c (END)")
+    print("========================")
+    print("Calling function_d (BEGIN)")
+    function_d()
+    print("Calling function_d (END)")
 
 if __name__=="__main__":
-  function_outer()
+  function_a()
 
 """
     Expected output:
     $ python3 ./dynamic_scope.py
-    outer_variable: outer variable
-    outer_variable: not the outer variable.
+    Calling function_c (BEGIN)
+    variable_v: outer variable
+    Calling function_c (END)
+    ========================
+    Calling function_d (BEGIN)
+    variable_v: not the outer variable.
+    Calling function_d (END)
 """
