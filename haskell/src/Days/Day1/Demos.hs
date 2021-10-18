@@ -42,5 +42,3 @@ pleList (head:tail) f = f*head : pleList tail f
 -- What if we wanted to do something else?
 fList (head:[]) f = [f head]
 fList (head:tail) f = (f head) : fList tail f
-
-s :: x y z = (x z)(y z)
