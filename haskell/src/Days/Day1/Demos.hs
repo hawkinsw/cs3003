@@ -20,6 +20,19 @@ trueFalseToNum :: Bool -> Int -> Int -> Int
 trueFalseToNum True t _ = t
 trueFalseToNum False _ f = f
 
+infinity = [x | x <- [0..]]
+evens = [x | x <- infinity, even x]
+odds = [x | x <- infinity, odd x]
+
+first100Odds = take 100 odds
+
+overUnder ou v | v > ou = True
+               | otherwise = False
+
+first100OddsOver100 = filter (\x -> overUnder 100 x) first100Odds
+-- first100OddsOver100 = filter (overUnder 100) first100Odds
+first100OddsUnder100 = filter (\x -> not (overUnder 100 x)) first100Odds
+
 -- Let's write a function that returns the last element
 -- in the list.
 myTail (x:[]) = x
