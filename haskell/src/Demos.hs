@@ -1,4 +1,4 @@
-module Days.Day1.Demos where
+module Demos where
 
 -- trueFalseTo10
 -- This function accepts a Bool and returns 1
