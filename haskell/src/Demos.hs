@@ -55,3 +55,11 @@ pleList (head:tail) f = f*head : pleList tail f
 -- What if we wanted to do something else?
 fList (head:[]) f = [f head]
 fList (head:tail) f = (f head) : fList tail f
+
+myif :: Bool -> a -> a -> a
+myif True t _ = t
+myif False _ f = f
+
+-- call = let x = myif True 1 (div 1 0) in
+--       let y = myif False 1 (div 1 0) in
+--       (x,y)
