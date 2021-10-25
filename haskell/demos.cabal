@@ -48,7 +48,7 @@ cabal-version:       >=1.10
 
 library
   -- Modules exported by the library.
-  exposed-modules: Demos
+  exposed-modules: Demos, Babel
 
   -- Modules included in this library but not exported.
   -- other-modules:
@@ -57,7 +57,7 @@ library
   -- other-extensions:
 
   -- Other library packages from which modules are imported.
-  build-depends:       base >=4.12 && <4.13
+  build-depends:       base >=4.12 && <4.13, containers
 
   -- Directories containing source files.
   hs-source-dirs:      src

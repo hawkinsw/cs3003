@@ -1,5 +1,7 @@
 module Demos where
 
+import qualified Data.Map as Map
+
 -- trueFalseTo10
 -- This function accepts a Bool and returns 1
 -- if that parameter is True; 0, otherwise.
@@ -40,20 +42,20 @@ myTail (_:y) = myTail y
 
 -- Let's write a function that doubles each
 -- element in the list.
-doubleList (head:[]) = [head*2]
+doubleList [] = []
 doubleList (head:tail) = head*2 : doubleList tail
 
 -- Let's write a function that triples each
 -- element in the list.
-tripleList (head:[]) = [head*3]
+tripleList [] = []
 tripleList (head:tail) = head*3 : tripleList tail
 
 -- Ugh, that's repetitive!
-pleList (head:[]) f = [f*head]
+pleList [] f = []
 pleList (head:tail) f = f*head : pleList tail f
 
 -- What if we wanted to do something else?
-fList (head:[]) f = [f head]
+fList [] f = []
 fList (head:tail) f = (f head) : fList tail f
 
 myif :: Bool -> a -> a -> a
@@ -63,3 +65,15 @@ myif False _ f = f
 -- call = let x = myif True 1 (div 1 0) in
 --       let y = myif False 1 (div 1 0) in
 --       (x,y)
+--
+instance (Show a) => Show (MyMaybe a) where
+  show (Some l) = foldr (((++) . show)) "" l
+  show (None) = "Nothing passed the filter!"
+
+data MyMaybe a = Some [a] | None
+doMyFilter output f [] | not ((length output) == 0) = Some output
+                      | otherwise = None
+-- doMyFilter output f [] = output
+doMyFilter output f (x:xs) | f x = doMyFilter (output++[x]) f xs
+                           | otherwise = doMyFilter output f xs
+myFilter = doMyFilter []
