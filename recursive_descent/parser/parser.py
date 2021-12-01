@@ -8,7 +8,7 @@ class BadNode(Node):
   def __init__(self, bad_token):
     self.bad_token = bad_token
   def __repr__(self):
-    return f"{self.bad_token}"
+    return f"Parse error: {self.bad_token}"
   pass
 
 class GoodNode(Node):
@@ -26,7 +26,7 @@ class ExprP(GoodNode):
     self.term = term
     self.exprp = exprp
   def __repr__(self):
-    return f"ExprP -> {self.term}{self.exprp}"
+    return f"ExprP -> +{self.term}{self.exprp}"
 
 class Term(GoodNode):
   def __init__(self, factor, termp):
@@ -40,7 +40,7 @@ class TermP(GoodNode):
     self.factor = factor
     self.termp = termp
   def __repr__(self):
-    return f"TermP -> {self.factor}{self.termp}"
+    return f"TermP -> *{self.factor}{self.termp}"
 
 class Factor(GoodNode):
   pass

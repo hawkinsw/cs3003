@@ -1,5 +1,18 @@
 from .token import *
 
+class FAState(object):
+  pass
+class BEGIN(FAState):
+  pass
+class NUMBER(FAState):
+  pass
+
+def in_state(actual, expected):
+  return type(actual) == expected
+
+def new_state(new_state):
+  return new_state()
+
 def tokenizer(input_file = None):
   if input_file == None:
     yield BadToken("No input file.", 0)
@@ -7,22 +20,25 @@ def tokenizer(input_file = None):
 
   with open(input_file) as file:
     file_contents = file.read()
-    BEGIN = 0
-    NUMBER = 1
-    state = BEGIN
-    lexeme = ""
+    state = new_state(BEGIN)
+    buf = ""
     for i in range(len(file_contents)):
-      if state == NUMBER:
+      if in_state(state,NUMBER):
         if file_contents[i].isdigit():
-          # Continue accumulating the lexeme!
-          lexeme += file_contents[i]
+          buf += file_contents[i]
         else:
-          # we are done with the lexeme!
-          token = IntegerLiteral(int(lexeme))
-          lexeme = ""
-          state = BEGIN
+          intlex = int(buf)
+          token = IntegerLiteral(intlex)
+          buf = ""
+          state = new_state(BEGIN)
           yield token
-      if state == BEGIN:
+      # Careful: This is *not* an elsif intentionally. If
+      # we saw a non-digit when we were in the NUMBER state,
+      # we changed state to the BEGIN state, yielded a
+      # IntegerLiteral token ... BUT still need to handle
+      # the character that bumped us out of the NUMBER state.
+      # This is a shortcut, but one that I think is okay!
+      if in_state(state,BEGIN):
         if file_contents[i] == '(':
           yield OpenParen()
         elif file_contents[i] == ')':
@@ -32,8 +48,8 @@ def tokenizer(input_file = None):
         elif file_contents[i] == '*':
           yield MultiplyOperator()
         elif file_contents[i].isdigit():
-          state = NUMBER
-          lexeme += file_contents[i]
+          state = new_state(NUMBER)
+          buf = file_contents[i]
         elif not file_contents[i].isprintable() or \
              file_contents[i].isspace():
           pass
