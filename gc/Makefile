@@ -5,3 +5,5 @@ CleanerDemo: CleanerDemo.java
 	javac CleanerDemo.java -Xlint:deprecation
 destructable: destructable.cpp
 	g++ -o destructable destructable.cpp
+clean:
+	rm -rf *.class

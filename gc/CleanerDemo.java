@@ -5,29 +5,36 @@ class Counter {
   public static int counter = 0;
 }
 
-class O {
-  O() {
-    System.out.println("This is an O constructor!");
+class Q {
+  static class QCleaner implements Runnable {
+    QCleaner(int creationGeneration) {
+      mCreationGeneration = creationGeneration;
+    }
+
+    public void run() {
+      System.out.println(String.format("A Q from generation %d is being cleaned after %d generations.", mCreationGeneration, Counter.counter));
+    }
+    private int mCreationGeneration;
   }
+
+  Q() {
+    int a[] = new int[100000000];
+    cleaner = Cleaner.create();
+    cleaner.register(this, new Q.QCleaner(Counter.counter));
+  }
+
+  private Cleaner cleaner;
 }
 
-class OCleaner implements Runnable {
-  public void run() {
-    System.out.println("O is being cleaned after " + Counter.counter + " iterations.");
-  }
-}
 
 public class CleanerDemo {
-  static void use_an_o() {
-    Cleaner cleaner = Cleaner.create();
-    O ohh = new O();
-    cleaner.register(ohh, new OCleaner());
-    ohh = null;
+  static void use_a_q() {
+    Q cue = new Q();
   }
 
   public static void main(String args[]) {
-    use_an_o();
     for (int i = 0; true; i++) {
+      use_a_q();
       int[] a = new int[10000];
       Counter.counter++;
       try {

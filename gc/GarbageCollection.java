@@ -1,5 +1,6 @@
 import java.lang.System;
 import java.util.Vector;
+import java.util.List;
 
 class Counter {
   public static int counter = 0;
@@ -7,29 +8,35 @@ class Counter {
 
 class O {
   O() {
-    System.out.println("This is an O constructor!");
+    int[] a = new int[OSIZE];
+    generation = Counter.counter;
   }
 
+  private int generation;
+  static public final int OSIZE = 10000000;
+
   protected void finalize() {
-    System.out.println("We are done with this object after " + Counter.counter + " iterations!");
+    System.out.println(String.format("We are done with %d after %d iterations.", generation, Counter.counter));
   }
 }
 
-public class GarbageCollection {
-  static void use_an_o() {
-    new O();
-    System.gc();
-  }
 
+public class GarbageCollection {
+  static public final int ASIZE = 100000;
+  
   public static void main(String args[]) {
-    use_an_o();
+    List<int[]> larray = new Vector<int[]>();
     for (int i = 0; true; i++) {
-      int[] a = new int[100000];
-      System.gc();
+      O no = new O();
+      int[] a = new int[ASIZE];
+      larray.add(a);
+      //System.gc();
       Counter.counter++;
       try {
-        Thread.sleep(400);
-      } catch (Exception e) {}
+        java.lang.Thread.sleep(400);
+      } catch (InterruptedException iex) {
+        // Don't need to do anything.
+      }
     }
   }
 }
