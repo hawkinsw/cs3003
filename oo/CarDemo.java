@@ -14,7 +14,7 @@ class Car {
     }
   }
 
-  boolean ignite() {
+  public boolean ignite() {
       System.out.println("Igniting a generic car's engine!");
       return true;
   }
@@ -27,7 +27,7 @@ class Tesla extends Car {
   }
 
   @Override
-  boolean ignite() {
+  public boolean ignite() {
     super.ignite();
     System.out.println("Igniting a Tesla's engine!");
     return true;
@@ -40,7 +40,7 @@ class Chevrolet extends Car {
   }
 
   @Override
-  boolean ignite() {
+  public boolean ignite() {
     super.ignite();
     System.out.println("Igniting a Chevrolet's engine!");
     return false;
@@ -49,7 +49,7 @@ class Chevrolet extends Car {
 
 class Volt extends Chevrolet {
   @Override
-  boolean ignite() {
+  public boolean ignite() {
     System.out.println("Volt!");
     return true;
   }

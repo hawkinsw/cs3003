@@ -1,7 +1,0 @@
-[
-{
-  "directory": "/home/hawkinsw/code/uc/cs3003/subprograms-build",
-  "command": "/usr/bin/c++      -o CMakeFiles/subprograms.dir/subprograms.cpp.o -c /home/hawkinsw/code/uc/cs3003/subprograms/subprograms.cpp",
-  "file": "/home/hawkinsw/code/uc/cs3003/subprograms/subprograms.cpp"
-}
-]
