@@ -37,7 +37,7 @@ where `base_pointer_address` is the address of base of the topmost stack frame, 
 
 In real life (on an x86-64 machine), that looks like:
 
-```asm
+```x86asm
 lea    -0x8(%rbp),%rax
 ```
 
@@ -94,7 +94,7 @@ Of course, there is plenty of jitter in the individual measurements, but overall
 
 Let's drill down and look at the code the compiler generates and we can see how our hypothetical, academic discussion above plays out in real code. Here is the code that `gcc` generates for `local`:
 
-```asm
+```x86asm
 push   %rbp
 mov    %rsp,%rbp
 sub    $0x10,%rsp
@@ -108,7 +108,7 @@ ret
 
 And here is the code that `gcc` generates for `static_`:
 
-```asm
+```x86asm
 push   %rbp
 mov    %rsp,%rbp
 call   404540 <_Z5emptyv>
@@ -138,7 +138,7 @@ Why is this standard these days? Because of something called address-space layou
 
 Why am I telling you this? Because, if you use the default settings for most modern compilers on most modern operating systems, the generated code will all access static variables using so-called RIP-relative addresses. RIP-relative accesses are those that are done relative to the, well, RIP -- a register that stores the address of the currently executing instruction. As a result, what we saw above as the code the compiler generates to access static variables:
 
-```asm
+```x86asm
 push   %rbp
 mov    %rsp,%rbp
 call   404540 <_Z5emptyv>
@@ -150,7 +150,7 @@ ret
 
 turns in to code that looks like this:
 
-```asm
+```x86asm
 push   %rbp
 mov    %rsp,%rbp
 callq  11e9 
@@ -163,7 +163,7 @@ retq
 
 And *that* looks suspiciously like
 
-```asm
+```x86asm
 push   %rbp
 mov    %rsp,%rbp
 sub    $0x10,%rsp
