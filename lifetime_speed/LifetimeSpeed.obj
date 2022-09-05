@@ -1,0 +1,185 @@
+0000000000404540 <_Z5emptyv>:
+  404540:	55                   	push   %rbp
+  404541:	48 89 e5             	mov    %rsp,%rbp
+  404544:	31 c0                	xor    %eax,%eax
+  404546:	5d                   	pop    %rbp
+  404547:	c3                   	ret    
+  404548:	0f 1f 84 00 00 00 00 	nopl   0x0(%rax,%rax,1)
+  40454f:	00 
+
+0000000000404550 <_Z5localv>:
+  404550:	55                   	push   %rbp
+  404551:	48 89 e5             	mov    %rsp,%rbp
+  404554:	48 83 ec 10          	sub    $0x10,%rsp
+  404558:	e8 e3 ff ff ff       	call   404540 <_Z5emptyv>
+  40455d:	48 8b 45 f8          	mov    -0x8(%rbp),%rax
+  404561:	48 03 45 f0          	add    -0x10(%rbp),%rax
+  404565:	48 83 c4 10          	add    $0x10,%rsp
+  404569:	5d                   	pop    %rbp
+  40456a:	c3                   	ret    
+  40456b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000404570 <_Z7static_v>:
+  404570:	55                   	push   %rbp
+  404571:	48 89 e5             	mov    %rsp,%rbp
+  404574:	e8 c7 ff ff ff       	call   404540 <_Z5emptyv>
+  404579:	48 8b 04 25 58 25 5e 	mov    0x5e2558,%rax
+  404580:	00 
+  404581:	48 03 04 25 60 25 5e 	add    0x5e2560,%rax
+  404588:	00 
+  404589:	5d                   	pop    %rbp
+  40458a:	c3                   	ret    
+  40458b:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+
+0000000000404590 <main>:
+  404590:	55                   	push   %rbp
+  404591:	48 89 e5             	mov    %rsp,%rbp
+  404594:	48 81 ec c0 00 00 00 	sub    $0xc0,%rsp
+  40459b:	c7 45 fc 00 00 00 00 	movl   $0x0,-0x4(%rbp)
+  4045a2:	48 c7 45 f0 80 8d 5b 	movq   $0x5b8d80,-0x10(%rbp)
+  4045a9:	00 
+  4045aa:	48 c7 45 e8 00 00 00 	movq   $0x0,-0x18(%rbp)
+  4045b1:	00 
+  4045b2:	e8 49 7e 00 00       	call   40c400 <_ZNSt6chrono3_V212system_clock3nowEv>
+  4045b7:	48 89 45 e0          	mov    %rax,-0x20(%rbp)
+  4045bb:	e8 40 7e 00 00       	call   40c400 <_ZNSt6chrono3_V212system_clock3nowEv>
+  4045c0:	48 89 45 d8          	mov    %rax,-0x28(%rbp)
+  4045c4:	48 8d 7d d0          	lea    -0x30(%rbp),%rdi
+  4045c8:	31 f6                	xor    %esi,%esi
+  4045ca:	ba 08 00 00 00       	mov    $0x8,%edx
+  4045cf:	e8 8c ca ff ff       	call   401060 <_init+0x60>
+  4045d4:	48 c7 45 e8 00 00 00 	movq   $0x0,-0x18(%rbp)
+  4045db:	00 
+  4045dc:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  4045e0:	48 3b 45 f0          	cmp    -0x10(%rbp),%rax
+  4045e4:	0f 83 56 00 00 00    	jae    404640 <main+0xb0>
+  4045ea:	e8 11 7e 00 00       	call   40c400 <_ZNSt6chrono3_V212system_clock3nowEv>
+  4045ef:	48 89 45 c8          	mov    %rax,-0x38(%rbp)
+  4045f3:	48 8b 45 c8          	mov    -0x38(%rbp),%rax
+  4045f7:	48 89 45 e0          	mov    %rax,-0x20(%rbp)
+  4045fb:	e8 40 ff ff ff       	call   404540 <_Z5emptyv>
+  404600:	e8 fb 7d 00 00       	call   40c400 <_ZNSt6chrono3_V212system_clock3nowEv>
+  404605:	48 89 45 c0          	mov    %rax,-0x40(%rbp)
+  404609:	48 8b 45 c0          	mov    -0x40(%rbp),%rax
+  40460d:	48 89 45 d8          	mov    %rax,-0x28(%rbp)
+  404611:	48 8d 7d d8          	lea    -0x28(%rbp),%rdi
+  404615:	48 8d 75 e0          	lea    -0x20(%rbp),%rsi
+  404619:	e8 22 02 00 00       	call   404840 <_ZNSt6chronomiINS_3_V212system_clockENS_8durationIlSt5ratioILl1ELl1000000000EEEES6_EENSt11common_typeIJT0_T1_EE4typeERKNS_10time_pointIT_S8_EERKNSC_ISD_S9_EE>
+  40461e:	48 89 45 b8          	mov    %rax,-0x48(%rbp)
+  404622:	48 8d 7d d0          	lea    -0x30(%rbp),%rdi
+  404626:	48 8d 75 b8          	lea    -0x48(%rbp),%rsi
+  40462a:	e8 61 02 00 00       	call   404890 <_ZNSt6chrono8durationIlSt5ratioILl1ELl1000000000EEEpLERKS3_>
+  40462f:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404633:	48 83 c0 01          	add    $0x1,%rax
+  404637:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+  40463b:	e9 9c ff ff ff       	jmp    4045dc <main+0x4c>
+  404640:	48 8b 45 d0          	mov    -0x30(%rbp),%rax
+  404644:	48 89 45 b0          	mov    %rax,-0x50(%rbp)
+  404648:	e8 83 02 00 00       	call   4048d0 <_ZNSt8literals15chrono_literalsli2nsIJLc48EEEENSt6chrono8durationIlSt5ratioILl1ELl1000000000EEEEv>
+  40464d:	48 89 45 a8          	mov    %rax,-0x58(%rbp)
+  404651:	48 8b 45 a8          	mov    -0x58(%rbp),%rax
+  404655:	48 89 45 d0          	mov    %rax,-0x30(%rbp)
+  404659:	48 c7 45 e8 00 00 00 	movq   $0x0,-0x18(%rbp)
+  404660:	00 
+  404661:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  404665:	48 3b 45 f0          	cmp    -0x10(%rbp),%rax
+  404669:	0f 83 56 00 00 00    	jae    4046c5 <main+0x135>
+  40466f:	e8 8c 7d 00 00       	call   40c400 <_ZNSt6chrono3_V212system_clock3nowEv>
+  404674:	48 89 45 a0          	mov    %rax,-0x60(%rbp)
+  404678:	48 8b 45 a0          	mov    -0x60(%rbp),%rax
+  40467c:	48 89 45 e0          	mov    %rax,-0x20(%rbp)
+  404680:	e8 cb fe ff ff       	call   404550 <_Z5localv>
+  404685:	e8 76 7d 00 00       	call   40c400 <_ZNSt6chrono3_V212system_clock3nowEv>
+  40468a:	48 89 45 98          	mov    %rax,-0x68(%rbp)
+  40468e:	48 8b 45 98          	mov    -0x68(%rbp),%rax
+  404692:	48 89 45 d8          	mov    %rax,-0x28(%rbp)
+  404696:	48 8d 7d d8          	lea    -0x28(%rbp),%rdi
+  40469a:	48 8d 75 e0          	lea    -0x20(%rbp),%rsi
+  40469e:	e8 9d 01 00 00       	call   404840 <_ZNSt6chronomiINS_3_V212system_clockENS_8durationIlSt5ratioILl1ELl1000000000EEEES6_EENSt11common_typeIJT0_T1_EE4typeERKNS_10time_pointIT_S8_EERKNSC_ISD_S9_EE>
+  4046a3:	48 89 45 90          	mov    %rax,-0x70(%rbp)
+  4046a7:	48 8d 7d d0          	lea    -0x30(%rbp),%rdi
+  4046ab:	48 8d 75 90          	lea    -0x70(%rbp),%rsi
+  4046af:	e8 dc 01 00 00       	call   404890 <_ZNSt6chrono8durationIlSt5ratioILl1ELl1000000000EEEpLERKS3_>
+  4046b4:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  4046b8:	48 83 c0 01          	add    $0x1,%rax
+  4046bc:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+  4046c0:	e9 9c ff ff ff       	jmp    404661 <main+0xd1>
+  4046c5:	48 8b 45 d0          	mov    -0x30(%rbp),%rax
+  4046c9:	48 89 45 88          	mov    %rax,-0x78(%rbp)
+  4046cd:	e8 fe 01 00 00       	call   4048d0 <_ZNSt8literals15chrono_literalsli2nsIJLc48EEEENSt6chrono8durationIlSt5ratioILl1ELl1000000000EEEEv>
+  4046d2:	48 89 45 80          	mov    %rax,-0x80(%rbp)
+  4046d6:	48 8b 45 80          	mov    -0x80(%rbp),%rax
+  4046da:	48 89 45 d0          	mov    %rax,-0x30(%rbp)
+  4046de:	48 c7 45 e8 00 00 00 	movq   $0x0,-0x18(%rbp)
+  4046e5:	00 
+  4046e6:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  4046ea:	48 3b 45 f0          	cmp    -0x10(%rbp),%rax
+  4046ee:	0f 83 68 00 00 00    	jae    40475c <main+0x1cc>
+  4046f4:	e8 07 7d 00 00       	call   40c400 <_ZNSt6chrono3_V212system_clock3nowEv>
+  4046f9:	48 89 85 78 ff ff ff 	mov    %rax,-0x88(%rbp)
+  404700:	48 8b 85 78 ff ff ff 	mov    -0x88(%rbp),%rax
+  404707:	48 89 45 e0          	mov    %rax,-0x20(%rbp)
+  40470b:	e8 60 fe ff ff       	call   404570 <_Z7static_v>
+  404710:	e8 eb 7c 00 00       	call   40c400 <_ZNSt6chrono3_V212system_clock3nowEv>
+  404715:	48 89 85 70 ff ff ff 	mov    %rax,-0x90(%rbp)
+  40471c:	48 8b 85 70 ff ff ff 	mov    -0x90(%rbp),%rax
+  404723:	48 89 45 d8          	mov    %rax,-0x28(%rbp)
+  404727:	48 8d 7d d8          	lea    -0x28(%rbp),%rdi
+  40472b:	48 8d 75 e0          	lea    -0x20(%rbp),%rsi
+  40472f:	e8 0c 01 00 00       	call   404840 <_ZNSt6chronomiINS_3_V212system_clockENS_8durationIlSt5ratioILl1ELl1000000000EEEES6_EENSt11common_typeIJT0_T1_EE4typeERKNS_10time_pointIT_S8_EERKNSC_ISD_S9_EE>
+  404734:	48 89 85 68 ff ff ff 	mov    %rax,-0x98(%rbp)
+  40473b:	48 8d 7d d0          	lea    -0x30(%rbp),%rdi
+  40473f:	48 8d b5 68 ff ff ff 	lea    -0x98(%rbp),%rsi
+  404746:	e8 45 01 00 00       	call   404890 <_ZNSt6chrono8durationIlSt5ratioILl1ELl1000000000EEEpLERKS3_>
+  40474b:	48 8b 45 e8          	mov    -0x18(%rbp),%rax
+  40474f:	48 83 c0 01          	add    $0x1,%rax
+  404753:	48 89 45 e8          	mov    %rax,-0x18(%rbp)
+  404757:	e9 8a ff ff ff       	jmp    4046e6 <main+0x156>
+  40475c:	48 8b 45 d0          	mov    -0x30(%rbp),%rax
+  404760:	48 89 85 60 ff ff ff 	mov    %rax,-0xa0(%rbp)
+  404767:	48 8d 7d b0          	lea    -0x50(%rbp),%rdi
+  40476b:	e8 80 01 00 00       	call   4048f0 <_ZNSt6chrono13duration_castINS_8durationIlSt5ratioILl1ELl1000000000EEEElS3_EENSt9enable_ifIXsr13__is_durationIT_EE5valueES6_E4typeERKNS1_IT0_T1_EE>
+  404770:	48 89 85 58 ff ff ff 	mov    %rax,-0xa8(%rbp)
+  404777:	48 8d bd 58 ff ff ff 	lea    -0xa8(%rbp),%rdi
+  40477e:	e8 9d 01 00 00       	call   404920 <_ZNKSt6chrono8durationIlSt5ratioILl1ELl1000000000EEE5countEv>
+  404783:	48 89 c6             	mov    %rax,%rsi
+  404786:	48 bf 80 34 5e 00 00 	movabs $0x5e3480,%rdi
+  40478d:	00 00 00 
+  404790:	e8 3b 89 06 00       	call   46d0d0 <_ZNSolsEl>
+  404795:	48 89 c7             	mov    %rax,%rdi
+  404798:	48 be 04 60 57 00 00 	movabs $0x576004,%rsi
+  40479f:	00 00 00 
+  4047a2:	e8 c9 85 06 00       	call   46cd70 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc>
+  4047a7:	48 8d 7d 88          	lea    -0x78(%rbp),%rdi
+  4047ab:	e8 40 01 00 00       	call   4048f0 <_ZNSt6chrono13duration_castINS_8durationIlSt5ratioILl1ELl1000000000EEEElS3_EENSt9enable_ifIXsr13__is_durationIT_EE5valueES6_E4typeERKNS1_IT0_T1_EE>
+  4047b0:	48 89 85 50 ff ff ff 	mov    %rax,-0xb0(%rbp)
+  4047b7:	48 8d bd 50 ff ff ff 	lea    -0xb0(%rbp),%rdi
+  4047be:	e8 5d 01 00 00       	call   404920 <_ZNKSt6chrono8durationIlSt5ratioILl1ELl1000000000EEE5countEv>
+  4047c3:	48 89 c6             	mov    %rax,%rsi
+  4047c6:	48 bf 80 34 5e 00 00 	movabs $0x5e3480,%rdi
+  4047cd:	00 00 00 
+  4047d0:	e8 fb 88 06 00       	call   46d0d0 <_ZNSolsEl>
+  4047d5:	48 89 c7             	mov    %rax,%rdi
+  4047d8:	48 be 04 60 57 00 00 	movabs $0x576004,%rsi
+  4047df:	00 00 00 
+  4047e2:	e8 89 85 06 00       	call   46cd70 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc>
+  4047e7:	48 8d bd 60 ff ff ff 	lea    -0xa0(%rbp),%rdi
+  4047ee:	e8 fd 00 00 00       	call   4048f0 <_ZNSt6chrono13duration_castINS_8durationIlSt5ratioILl1ELl1000000000EEEElS3_EENSt9enable_ifIXsr13__is_durationIT_EE5valueES6_E4typeERKNS1_IT0_T1_EE>
+  4047f3:	48 89 85 48 ff ff ff 	mov    %rax,-0xb8(%rbp)
+  4047fa:	48 8d bd 48 ff ff ff 	lea    -0xb8(%rbp),%rdi
+  404801:	e8 1a 01 00 00       	call   404920 <_ZNKSt6chrono8durationIlSt5ratioILl1ELl1000000000EEE5countEv>
+  404806:	48 89 c6             	mov    %rax,%rsi
+  404809:	48 bf 80 34 5e 00 00 	movabs $0x5e3480,%rdi
+  404810:	00 00 00 
+  404813:	e8 b8 88 06 00       	call   46d0d0 <_ZNSolsEl>
+  404818:	48 89 c7             	mov    %rax,%rdi
+  40481b:	48 be aa cb 57 00 00 	movabs $0x57cbaa,%rsi
+  404822:	00 00 00 
+  404825:	e8 46 85 06 00       	call   46cd70 <_ZStlsISt11char_traitsIcEERSt13basic_ostreamIcT_ES5_PKc>
+  40482a:	31 c0                	xor    %eax,%eax
+  40482c:	48 81 c4 c0 00 00 00 	add    $0xc0,%rsp
+  404833:	5d                   	pop    %rbp
+  404834:	c3                   	ret    
+  404835:	66 2e 0f 1f 84 00 00 	cs nopw 0x0(%rax,%rax,1)
+  40483c:	00 00 00 
+  40483f:	90                   	nop
