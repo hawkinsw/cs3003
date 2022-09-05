@@ -43,7 +43,7 @@ lea    -0x8(%rbp),%rax
 
 On an ARM-based machine, that looks like:
 
-```
+```armasm
 adds    r3, r7, #4
 ```
 
