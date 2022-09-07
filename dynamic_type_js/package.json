@@ -1,0 +1,17 @@
+{
+  "name": "dynamic_type_js",
+  "version": "1.0.0",
+  "description": "Show the changing types of a variable in JS",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "bin": {
+    "dynamic_type_js": "index.js"
+  },
+  "devDependencies": {
+    "@datastructures-js/binary-search-tree": "^5.0.2"
+  }
+}
