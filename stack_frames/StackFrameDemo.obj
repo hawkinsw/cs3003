@@ -1,0 +1,25 @@
+000011e1 <summit>:
+    11e1:	f3 0f 1e fb          	endbr32 
+    11e5:	55                   	push   %ebp
+    11e6:	89 e5                	mov    %esp,%ebp
+    11e8:	8b 55 08             	mov    0x8(%ebp),%edx
+    11eb:	8b 45 0c             	mov    0xc(%ebp),%eax
+    11ee:	01 d0                	add    %edx,%eax
+    11f0:	5d                   	pop    %ebp
+    11f1:	c3                   	ret    
+
+000011f2 <main>:
+    11f2:	f3 0f 1e fb          	endbr32 
+    11f6:	55                   	push   %ebp
+    11f7:	89 e5                	mov    %esp,%ebp
+    11f9:	83 ec 10             	sub    $0x10,%esp
+    11fc:	c7 45 f4 ad de 00 00 	movl   $0xdead,-0xc(%ebp)
+    1203:	c7 45 f8 ef be 00 00 	movl   $0xbeef,-0x8(%ebp)
+    120a:	ff 75 f8             	push   -0x8(%ebp)
+    120d:	ff 75 f4             	push   -0xc(%ebp)
+    1210:	e8 cc ff ff ff       	call   11e1 <summit>
+    1215:	83 c4 08             	add    $0x8,%esp
+    1218:	89 45 fc             	mov    %eax,-0x4(%ebp)
+    121b:	8b 45 fc             	mov    -0x4(%ebp),%eax
+    121e:	c9                   	leave  
+    121f:	c3                   	ret    
