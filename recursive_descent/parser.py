@@ -1,9 +1,9 @@
-from lexer import tokenizer, token
+from lexer import tokenizer
 from parser import parser
 
 tknzr = tokenizer.tokenizer("testing.input")
-#tknzr = tokenizer.tokenizer()
 
 parser = parser.Parser(tknzr)
+parsed = parser.parseExpr()
 
-print(parser.parseExpr())
+print(parsed)

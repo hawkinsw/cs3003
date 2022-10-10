@@ -15,34 +15,36 @@ class GoodNode(Node):
   pass
 
 class Expr(GoodNode):
-  def __init__(self, term, exprp):
+  def __init__(self, term, expr):
     self.term = term
-    self.exprp = exprp
+    self.expr = expr
   def __repr__(self):
-    return f"Expr -> {self.term}{self.exprp}"
+    return f"Expr -> {self.term}{self.expr}"
 
-class ExprP(GoodNode):
-  def __init__(self, term, exprp):
+class ExprPrime(GoodNode):
+  def __init__(self, term, expr_prime):
     self.term = term
-    self.exprp = exprp
+    self.expr_prime = expr_prime
   def __repr__(self):
-    return f"ExprP -> +{self.term}{self.exprp}"
+    return f"ExprPrime -> +{self.term}{self.expr_prime}"
 
 class Term(GoodNode):
-  def __init__(self, factor, termp):
+  def __init__(self, factor, term):
     self.factor = factor
-    self.termp = termp
+    self.term = term
   def __repr__(self):
-    return f"Term -> {self.factor}{self.termp}"
+    return f"Term -> {self.factor}{self.term}"
 
-class TermP(GoodNode):
-  def __init__(self, factor, termp):
+class TermPrime(GoodNode):
+  def __init__(self, factor, term_prime):
     self.factor = factor
-    self.termp = termp
+    self.term_prime = term_prime
   def __repr__(self):
-    return f"TermP -> *{self.factor}{self.termp}"
+    return f"TermPrime -> *{self.factor}{self.term_prime}"
 
 class Factor(GoodNode):
+  # This is basically just eating it because we are only 
+  # concerned about what comes nested inside it.
   pass
 
 class Id(GoodNode):
@@ -73,38 +75,38 @@ class Parser(object):
 
   def parseExpr(self):
     term = self.parseTerm()
-    if type(term) == BadNode:
-      return BadNode(term.bad_token)
-
-    exprp = self.parseExprP()
-    if type(exprp) == BadNode:
-      return BadNode(exprp.bad_token)
-
+    match term:
+      case BadNode():
+        return BadNode(term.bad_token)
+    exprp = self.parseExprPrime()
+    match exprp:
+      case BadNode():
+        return BadNode(exprp.bad_token)
     return Expr(term, exprp)
 
-  def parseExprP(self):
+  def parseExprPrime(self):
     tkn = self.nextToken()
     match tkn:
       case token.AddOperator():
         term = self.parseTerm()
-        exprp = self.parseExprP()
-        return ExprP(term, exprp)
+        exprp = self.parseExprPrime()
+        return ExprPrime(term, exprp)
       case _:
         self.pushbackToken(tkn)
         return Epsilon()
 
   def parseTerm(self):
     factor = self.parseFactor()
-    termp = self.parseTermP()
+    termp = self.parseTermPrime()
     return Term(factor, termp)
 
-  def parseTermP(self):
+  def parseTermPrime(self):
     tkn = self.nextToken()
     match tkn:
       case token.MultiplyOperator():
         factor = self.parseFactor()
-        termp = self.parseTermP()
-        return TermP(factor, termp)
+        termp = self.parseTermPrime()
+        return TermPrime(factor, termp)
       case _:
         self.pushbackToken(tkn)
         return Epsilon()
