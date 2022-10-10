@@ -1,12 +1,26 @@
 ## A Simple Recursive-Descent Parser in Python
 
+### Requirements
+
+Python 3.10
+
 ### Recognized Grammar
 
 ![recognized grammar](img/grammar.png)
 
 ### Running
 
-Requirements
-- Python 3.10
+You should run this in a Virtual Environment:
 
-`PYTHON_PATH=`pwd`/ && python3.10 parser.py`
+```
+$ python3.10 -mvenv env/
+$ source env/bin/activate
+```
+
+Then, before running, install the requirements:
+
+```
+$ pip install -r requirements.txt
+```
+
+`parser.py` will drive a demo.

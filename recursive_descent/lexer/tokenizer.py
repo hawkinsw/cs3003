@@ -1,3 +1,4 @@
+from typing import Optional
 from .token import *
 
 class FAState(object):
@@ -12,6 +13,14 @@ def in_state(actual, expected):
 
 def new_state(new_state):
   return new_state()
+
+def create_tokenizer(input_file: Optional[str] = None):
+  file_contents = None
+  if input_file == None:
+    return (None, None)
+  with open(input_file) as file:
+    file_contents = file.read()
+  return (file_contents, tokenizer(input_file))
 
 def tokenizer(input_file = None):
   if input_file == None:
