@@ -28,12 +28,31 @@ public final class App {
             System.out.println("Oops: " + ese.toString());
         }
     }
+    private static void TestGStack() {
+        GStack<Character> stack = new GStack<Character>();
 
+        stack.push('a');
+        stack.push('b');
+        stack.push('c');
+        stack.push('d');
+
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+        System.out.println(stack.pop());
+
+        try {
+            System.out.println(stack.pop());
+        } catch (EmptyStackException ese) {
+            System.out.println("Oops: " + ese.toString());
+        }
+    }
     /**
      * Says hello to the world.
      * @param args The arguments of the program.
      */
     public static void main(String[] args) {
         TestStack();
+        TestGStack();
     }
 }
