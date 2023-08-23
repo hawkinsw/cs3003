@@ -12,7 +12,7 @@ public class Number {
     return false;
   }
   public static void main(String args[]) {
-    Number rootable = new Number(36);
+    NumberDocumented rootable = new NumberDocumented(36);
 
     if (rootable.integerRoot()) {
       System.out.println("We have a root!\n");
