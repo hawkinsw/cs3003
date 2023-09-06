@@ -2,7 +2,7 @@
 A quintessentially imperative program.
 """
 
-# The definining form of abstraction in an imperative programming
+# The defining form of abstraction in an imperative programming
 # language is procedural (a.k.a. process) abstraction: a way to
 # specify a process without providing the details of how the process is performed.
 def sum_evens(low, high):
