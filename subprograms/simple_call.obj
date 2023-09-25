@@ -1,0 +1,36 @@
+0000000000401106 <_Z6noleafv>:
+  401106:	55                   	push   rbp
+  401107:	48 89 e5             	mov    rbp,rsp
+  40110a:	90                   	nop
+  40110b:	5d                   	pop    rbp
+  40110c:	c3                   	ret
+
+000000000040110d <_Z4swapii>:
+  40110d:	55                   	push   rbp
+  40110e:	48 89 e5             	mov    rbp,rsp
+  401111:	48 83 ec 18          	sub    rsp,0x18
+  401115:	89 7d ec             	mov    DWORD PTR [rbp-0x14],edi
+  401118:	89 75 e8             	mov    DWORD PTR [rbp-0x18],esi
+  40111b:	8b 45 ec             	mov    eax,DWORD PTR [rbp-0x14]
+  40111e:	89 45 fc             	mov    DWORD PTR [rbp-0x4],eax
+  401121:	8b 45 e8             	mov    eax,DWORD PTR [rbp-0x18]
+  401124:	89 45 f8             	mov    DWORD PTR [rbp-0x8],eax
+  401127:	e8 da ff ff ff       	call   401106 <_Z6noleafv>
+  40112c:	90                   	nop
+  40112d:	c9                   	leave
+  40112e:	c3                   	ret
+
+000000000040112f <main>:
+  40112f:	55                   	push   rbp
+  401130:	48 89 e5             	mov    rbp,rsp
+  401133:	48 83 ec 10          	sub    rsp,0x10
+  401137:	c7 45 fc 05 00 00 00 	mov    DWORD PTR [rbp-0x4],0x5
+  40113e:	c7 45 f8 07 00 00 00 	mov    DWORD PTR [rbp-0x8],0x7
+  401145:	8b 55 f8             	mov    edx,DWORD PTR [rbp-0x8]
+  401148:	8b 45 fc             	mov    eax,DWORD PTR [rbp-0x4]
+  40114b:	89 d6                	mov    esi,edx
+  40114d:	89 c7                	mov    edi,eax
+  40114f:	e8 b9 ff ff ff       	call   40110d <_Z4swapii>
+  401154:	b8 00 00 00 00       	mov    eax,0x0
+  401159:	c9                   	leave
+  40115a:	c3                   	ret

@@ -10,3 +10,6 @@ set_property(TARGET subprograms PROPERTY CXX_STANDARD 20)
 
 add_executable(simple_call simple_call.cpp)
 set_property(TARGET simple_call PROPERTY CXX_STANDARD 20)
+target_compile_options(simple_call PUBLIC -g -O0)
+add_custom_target(Objdump ALL DEPENDS "${CMAKE_SOURCE_DIR}/simple_call.obj")
+add_custom_command(OUTPUT "${CMAKE_SOURCE_DIR}/simple_call.obj" DEPENDS simple_call COMMAND objdump -D -Mintel "$<TARGET_FILE:simple_call>" > "${CMAKE_SOURCE_DIR}/simple_call.obj")
