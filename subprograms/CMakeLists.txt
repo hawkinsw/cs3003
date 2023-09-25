@@ -7,3 +7,6 @@ set_property(TARGET subprograms PROPERTY CXX_STANDARD 17)
 
 add_executable(coroutine coroutine.cpp)
 set_property(TARGET subprograms PROPERTY CXX_STANDARD 20)
+
+add_executable(simple_call simple_call.cpp)
+set_property(TARGET simple_call PROPERTY CXX_STANDARD 20)

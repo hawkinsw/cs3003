@@ -8,6 +8,7 @@ def deal(seed = None, shoe_size = 10):
     random.seed(seed)
     num_draws = 0
     while num_draws < shoe_size:
+        print(f"The dealer has been tapped {num_draws+1} time(s)")
         yield random.randint(1, 10)
         num_draws += 1
 
@@ -15,7 +16,11 @@ def player(next_player, name, to_win, dealer):
     total = 0
     while True:
         try:
-            total += next(dealer)
+            print(f"{name} is asking for a card.")
+            card = next(dealer)
+            print(f"{name} was dealt {card}.")
+            total += card
+            print(f"{name}'s hand now totals {total}.")
 
             if (total > to_win):
                 raise Winner(f"{name}")
@@ -25,16 +30,26 @@ def player(next_player, name, to_win, dealer):
             # to the top and signal that a new round
             # should start.
             if next_player == None:
+                print(f"{name} is the last player in the round.")
                 yield None
             else:
+                print(f"{name} is passing to the next player.")
                 yield next(next_player)
 
+            # This is the spot (after both the yields above)
+            # that we restart the execution when we are next()d,
+            # no matter who does that (a player to our left or
+            # the main driver of the program -- a new round).
+            # Because there is nothing left here, we go back
+            # to the top of the loop and, voila, start again.
+            print(f"{name} has been resumed.")
         except StopIteration as e:
             """ This will happen when we next(dealer) 
                 and they are completely out of draws. 
                 In other words, when we next() a coroutine
                 that has finished, we get the StopIteration
                 exception """
+            print(f"{name} asked for a card, but the deck was dry.")
             break
 
 if __name__=='__main__':
