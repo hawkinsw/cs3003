@@ -1,0 +1,67 @@
+08049180 <max>:
+ 8049180:	55                   	push   ebp
+ 8049181:	89 e5                	mov    ebp,esp
+ 8049183:	83 ec 0c             	sub    esp,0xc
+ 8049186:	8b 45 0c             	mov    eax,DWORD PTR [ebp+0xc]
+ 8049189:	8b 45 08             	mov    eax,DWORD PTR [ebp+0x8]
+ 804918c:	8b 45 08             	mov    eax,DWORD PTR [ebp+0x8]
+ 804918f:	89 45 f8             	mov    DWORD PTR [ebp-0x8],eax
+ 8049192:	8b 45 0c             	mov    eax,DWORD PTR [ebp+0xc]
+ 8049195:	89 45 f4             	mov    DWORD PTR [ebp-0xc],eax
+ 8049198:	8b 45 f8             	mov    eax,DWORD PTR [ebp-0x8]
+ 804919b:	3b 45 f4             	cmp    eax,DWORD PTR [ebp-0xc]
+ 804919e:	0f 8e 0b 00 00 00    	jle    80491af <max+0x2f>
+ 80491a4:	8b 45 f8             	mov    eax,DWORD PTR [ebp-0x8]
+ 80491a7:	89 45 fc             	mov    DWORD PTR [ebp-0x4],eax
+ 80491aa:	e9 06 00 00 00       	jmp    80491b5 <max+0x35>
+ 80491af:	8b 45 f4             	mov    eax,DWORD PTR [ebp-0xc]
+ 80491b2:	89 45 fc             	mov    DWORD PTR [ebp-0x4],eax
+ 80491b5:	8b 45 fc             	mov    eax,DWORD PTR [ebp-0x4]
+ 80491b8:	83 c4 0c             	add    esp,0xc
+ 80491bb:	5d                   	pop    ebp
+ 80491bc:	c3                   	ret
+ 80491bd:	0f 1f 00             	nop    DWORD PTR [eax]
+
+080491c0 <sum>:
+ 80491c0:	55                   	push   ebp
+ 80491c1:	89 e5                	mov    ebp,esp
+ 80491c3:	83 ec 18             	sub    esp,0x18
+ 80491c6:	8b 45 0c             	mov    eax,DWORD PTR [ebp+0xc]
+ 80491c9:	8b 45 08             	mov    eax,DWORD PTR [ebp+0x8]
+ 80491cc:	8b 45 08             	mov    eax,DWORD PTR [ebp+0x8]
+ 80491cf:	89 45 fc             	mov    DWORD PTR [ebp-0x4],eax
+ 80491d2:	8b 45 0c             	mov    eax,DWORD PTR [ebp+0xc]
+ 80491d5:	89 45 f8             	mov    DWORD PTR [ebp-0x8],eax
+ 80491d8:	8b 4d fc             	mov    ecx,DWORD PTR [ebp-0x4]
+ 80491db:	8b 45 f8             	mov    eax,DWORD PTR [ebp-0x8]
+ 80491de:	89 0c 24             	mov    DWORD PTR [esp],ecx
+ 80491e1:	89 44 24 04          	mov    DWORD PTR [esp+0x4],eax
+ 80491e5:	e8 96 ff ff ff       	call   8049180 <max>
+ 80491ea:	89 45 f4             	mov    DWORD PTR [ebp-0xc],eax
+ 80491ed:	8b 45 f4             	mov    eax,DWORD PTR [ebp-0xc]
+ 80491f0:	03 45 0c             	add    eax,DWORD PTR [ebp+0xc]
+ 80491f3:	83 c4 18             	add    esp,0x18
+ 80491f6:	5d                   	pop    ebp
+ 80491f7:	c3                   	ret
+ 80491f8:	0f 1f 84 00 00 00 00 	nop    DWORD PTR [eax+eax*1+0x0]
+ 80491ff:	00 
+
+08049200 <main>:
+ 8049200:	55                   	push   ebp
+ 8049201:	89 e5                	mov    ebp,esp
+ 8049203:	83 ec 18             	sub    esp,0x18
+ 8049206:	c7 45 fc 00 00 00 00 	mov    DWORD PTR [ebp-0x4],0x0
+ 804920d:	c7 04 24 05 00 00 00 	mov    DWORD PTR [esp],0x5
+ 8049214:	c7 44 24 04 07 00 00 	mov    DWORD PTR [esp+0x4],0x7
+ 804921b:	00 
+ 804921c:	e8 9f ff ff ff       	call   80491c0 <sum>
+ 8049221:	89 45 f8             	mov    DWORD PTR [ebp-0x8],eax
+ 8049224:	8b 45 f8             	mov    eax,DWORD PTR [ebp-0x8]
+ 8049227:	8d 0d 0c a0 04 08    	lea    ecx,ds:0x804a00c
+ 804922d:	89 0c 24             	mov    DWORD PTR [esp],ecx
+ 8049230:	89 44 24 04          	mov    DWORD PTR [esp+0x4],eax
+ 8049234:	e8 17 fe ff ff       	call   8049050 <printf@plt>
+ 8049239:	31 c0                	xor    eax,eax
+ 804923b:	83 c4 18             	add    esp,0x18
+ 804923e:	5d                   	pop    ebp
+ 804923f:	c3                   	ret
