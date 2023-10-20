@@ -21,7 +21,7 @@ class Node(object):
 
   def __getattr__(self, attribute: str):
     if attribute == "node_repr":
-      return self.__repr__()
+      return self.__str__()
     else:
       raise AttributeError()
 
@@ -29,10 +29,10 @@ class BadNode(Node):
   def __init__(self, bad_token):
     super().__init__()
     self.bad_token = bad_token
-  def __repr__(self):
+  def __str__(self):
     return f"Parse error: {self.bad_token}"
-  def tree_node(self, tree: Tree) -> TreeNode:
-    return tree.create_node(self.nodeID, self.nodeID, data=self)
+  def tree_node(self, tree: Tree, parent: TreeNode) -> TreeNode:
+    return tree.create_node(self.nodeID, self.nodeID, data=self, parent=parent)
   pass
 
 class GoodNode(Node):
@@ -44,7 +44,7 @@ class Id(GoodNode):
   def __init__(self, token):
     super().__init__()
     self.token = token
-  def __repr__(self):
+  def __str__(self):
     return f"Id: {self.token}"
   def tree_node(self, tree: Tree, parent: TreeNode) -> TreeNode:
     this_node: TreeNode = tree.create_node(self.nodeID, self.nodeID, data=self, parent=parent)
@@ -55,7 +55,7 @@ class Expr(GoodNode):
     super().__init__()
     self.term = term
     self.expr = expr
-  def __repr__(self):
+  def __str__(self):
     return f"Expr"
   def tree_node(self, tree: Tree, parent: TreeNode) -> TreeNode:
     this_node: TreeNode = tree.create_node(self.nodeID, self.nodeID, data=self, parent=parent)
@@ -68,7 +68,7 @@ class ExprPrime(GoodNode):
     super().__init__()
     self.term = term
     self.expr_prime = expr_prime
-  def __repr__(self):
+  def __str__(self):
     return f"ExprPrime"
   def tree_node(self, tree: Tree, parent: TreeNode) -> TreeNode:
     this_node: TreeNode = tree.create_node(self.nodeID, self.nodeID, data=self, parent=parent)
@@ -81,12 +81,12 @@ class Term(GoodNode):
     super().__init__()
     self.factor = factor
     self.term = term
-  def __repr__(self):
+  def __str__(self):
     return f"Term"
   def tree_node(self, tree: Tree, parent: TreeNode) -> TreeNode:
     this_node: TreeNode = tree.create_node(self.nodeID, self.nodeID, data=self, parent=parent)
-    self.term.tree_node(tree, this_node)
     self.factor.tree_node(tree, this_node)
+    self.term.tree_node(tree, this_node)
     return this_node
 
 class Factor(GoodNode):
@@ -107,7 +107,7 @@ class Factor(GoodNode):
       case _:
         raise AssertionError()
 
-  def __repr__(self):
+  def __str__(self):
     if self.id != None:
       return f"Factor of Id: {self.id}"
     return f"Factor of (Expr): {self.expr}"
@@ -129,7 +129,7 @@ class TermPrime(GoodNode):
     super().__init__()
     self.factor = factor
     self.term_prime = term_prime
-  def __repr__(self):
+  def __str__(self):
     return f"TermPrime"
   def tree_node(self, tree: Tree, parent: TreeNode) -> TreeNode:
     this_node: TreeNode = tree.create_node(self.nodeID, self.nodeID, data=self, parent=parent)
@@ -138,10 +138,12 @@ class TermPrime(GoodNode):
     return this_node
 
 class Epsilon(GoodNode):
-  def __init__(self):
+  instead_of: ClassVar
+  def __init__(self, instead_of=ClassVar):
     super().__init__()
-  def __repr__(self):
-    return "Epsilon"
+    self.instead_of = instead_of
+  def __str__(self):
+    return f"Epsilon (instead of {self.instead_of.__name__})"
   def tree_node(self, tree: Tree, parent: TreeNode) -> TreeNode:
     this_node: TreeNode = tree.create_node(self.nodeID, self.nodeID, data=self, parent=parent)
     return this_node
@@ -182,7 +184,7 @@ class Parser(object):
         return ExprPrime(term, exprp)
       case _:
         self.pushbackToken(tkn)
-        return Epsilon()
+        return Epsilon(ExprPrime)
 
   def parseTerm(self):
     factor = self.parseFactor()
@@ -198,7 +200,7 @@ class Parser(object):
         return TermPrime(factor, termp)
       case _:
         self.pushbackToken(tkn)
-        return Epsilon()
+        return Epsilon(TermPrime)
 
   def parseFactor(self):
     tkn = self.nextToken()
@@ -214,6 +216,9 @@ class Parser(object):
           return Factor(expr)
       case token.IntegerLiteral(value=value):
         return Factor(Id(value))
+      case _:
+        self.pushbackToken(tkn)
+        return BadNode(tkn)
 
   def tree_at(self, node: Node, result: Tree = Tree()):
     node.tree_node(result, None)
