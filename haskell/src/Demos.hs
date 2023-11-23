@@ -77,3 +77,15 @@ doMyFilter output f [] | not ((length output) == 0) = Some output
 doMyFilter output f (x:xs) | f x = doMyFilter (output++[x]) f xs
                            | otherwise = doMyFilter output f xs
 myFilter = doMyFilter []
+
+
+myLengthTr x [] = x
+myLengthTr x (h:t) = x `seq` myLengthTr (x + 1) t
+
+myFoldR _ init [] = init
+myFoldR f init (x:xs) = f x (myFoldR f init xs)
+
+myFoldL _ v [] = v
+myFoldL f v (x:xs) = myFoldL f (f v x) xs
+
+myFoldMap xform list = foldr (\next acc -> (xform next) : acc) [] list
