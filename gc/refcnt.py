@@ -31,7 +31,7 @@ def referrers():
   if id(stringa) in [id(x) for x in referrers] and id(stringb) in [id(x) for x in referrers]:
     print(f"Yes, both stringa and stringb *do* refer to the empty string.")
   else:
-    print(f"Yes, one of stringa and stringb *does no* refer to the empty string.")
+    print(f"Yes, one of stringa and stringb *does not* refer to the empty string.")
 
   """
   for referrer in referrers:
