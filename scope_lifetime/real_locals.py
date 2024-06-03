@@ -18,17 +18,21 @@ def real_locals(lcls):
 
 def a():
     last_name = "Clapton"
+    first_name = "Eric"
     print(f"{id(last_name)=}")
+    print(f"{id(first_name)=}")
 
     def c():
         last_name = "Mayer"
         print(f"{real_locals(locals())=}")
         print(f"{locals()=}")
-        print(f"{id(last_name)=}")
-        eval('print(f"{id(last_name)=}")')
+        print(f"{id(last_name)=} <-- Should differ from above.")
+        # This statement will bring first_name in as a free variable.
+        # See https://docs.python.org/3/reference/executionmodel.html#binding-of-names
+        # Notice that it is in locals(). But, according to
+        # the definition in the Python documentation, should it be?
+        print(f"{id(first_name)=} <-- Should be the same as above.")
     c()
-    eval('print(f"{id(last_name)=}")')
-
 
 if __name__ == '__main__':
     a()
