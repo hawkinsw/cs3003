@@ -1,12 +1,21 @@
-#include <cstdint>
 #include <iostream>
 #include <chrono>
 
-const unsigned int ITERATIONS{3};
-const unsigned int ROWS{5000};
-const unsigned int COLUMNS{5000};
+const int ITERATIONS{3};
+const int ROWS{5000};
+const int COLUMNS{5000};
 
 int array[ROWS][COLUMNS];
+
+int prove_me_wrong(int array[][COLUMNS]) {
+  return 0;
+}
+
+#if 0
+int prove_me_right(int array[ROWS][]) {
+  return 0;
+}
+#endif
 
 int row_major() {
   volatile int sum{0};
