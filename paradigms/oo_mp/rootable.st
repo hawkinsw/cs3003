@@ -5,7 +5,6 @@ Object subclass: #Rootable
        category: 'This is a category!'
 !
 
-
 !Rootable class methodsFor:'determining whether a number is a root of a number'!
 
 is: aRoot rootOf: aNumber

@@ -54,7 +54,14 @@ def play():
   for key, value in  keys_values:
     print(f"{key=} {value=}")
 
+def function(list = [2,3]):
+  list += [1]
+  print(f"list: {list}")
+
 if __name__=="__main__":
-  referrers()
-  mc = MyClass()
-  print(f"{mc.__getattribute__('Myb')}")
+  welcome = "Hello"
+  goodbye = "Hello"
+  print(f"id(welcome): {id(welcome)}")
+  print(f"id(goodbye): {id(goodbye)}")
+  print(f"welcome: {welcome}")
+  print(f"goodbye: {goodbye}")

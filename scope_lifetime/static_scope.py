@@ -1,28 +1,28 @@
 import inspect
 
-def function_a():
+def function_blue():
     variable_v = "outer variable"
-    def function_b():
+    def function_pink():
         value_of_variable_v = variable_v
         print(f"variable_v: {value_of_variable_v}")
 
-    def function_c():
-      function_b()
+    def function_green():
+      function_pink()
 
-    def function_d():
+    def function_yellow():
       variable_v = "not the outer variable."
-      function_b()
+      function_pink()
 
-    print("Calling function_c (BEGIN)")
-    function_c()
-    print("Calling function_c (END)")
+    print("Calling function_green (BEGIN)")
+    function_green()
+    print("Calling function_green (END)")
     print("========================")
-    print("Calling function_d (BEGIN)")
-    function_d()
-    print("Calling function_d (END)")
+    print("Calling function_yellow (BEGIN)")
+    function_yellow()
+    print("Calling function_yellow (END)")
 
 if __name__=="__main__":
-  function_a()
+  function_blue()
 
 """
     Expected output:

@@ -11,11 +11,9 @@ int prove_me_wrong(int array[][COLUMNS]) {
   return 0;
 }
 
-#if 0
 int prove_me_right(int array[ROWS][]) {
   return 0;
 }
-#endif
 
 int row_major() {
   volatile int sum{0};
