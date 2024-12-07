@@ -82,6 +82,23 @@ myFilter = doMyFilter []
 myLengthTr x [] = x
 myLengthTr x (h:t) = x `seq` myLengthTr (x + 1) t
 
+-- This version _is_ tail recursive. However, Haskell
+-- does _not_ know that we are surely going to use
+-- the result of the calculation (x + 1) in the second
+-- body of the function. So, it creates something called
+-- a thunk. A thunk is a little wrapper that contains
+-- enough information to calculate a result ... but 
+-- doesn't actually calculate the result until it's
+-- actually needed. That _can_ be an efficiency, but
+-- it also can mean that there are lots of thunks potentially
+-- waiting around! The actual tail-recursive version above
+-- uses `seq` to tell Haskell (explicitly) to be strict.
+-- a `seq` b
+-- tells Haskell to immediately (don't thunk, darn it)
+-- evaluate a because something in b is sure to use it!
+myLengthAlmostTr x [] = x
+myLengthAlmostTr x (h:t) = myLengthAlmostTr (x + 1) t
+
 myFoldR _ init [] = init
 myFoldR f init (x:xs) = f x (myFoldR f init xs)
 
